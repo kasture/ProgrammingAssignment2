@@ -1,6 +1,3 @@
-## Put comments here that give an overall description of what your
-## functions do
-
 ## makeCacheMatrix function returns a list containing get and set functions for the matrix and its inverse
 
 makeCacheMatrix <- function(x = matrix()) {
@@ -34,15 +31,17 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
   invmtrx <- x$getinv()
   
+  # if the inverse matrix is already calculated. print the message  
   if (!is.null(invmtrx))
-    message("getting cached data")
-  else
+    print("...cached...")
+  else # calculate inverse and cache it
   {
     mtrxdata <- x$get()
     invmtrx <- solve(mtrxdata, ...)
     x$setinv(invmtrx)
   }
 
+  # return the inverse matrix
   return(invmtrx)
 }
 
